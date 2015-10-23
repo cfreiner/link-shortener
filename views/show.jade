@@ -1,0 +1,6 @@
+extends layout.jade
+
+block content
+  h1 Shortened Link
+  h2: a(href='/#{link.hash}') http://localhost:5000/#{link.hash}
+  h3 this link has been clicked #{link.click_count} times

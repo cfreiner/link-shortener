@@ -3,7 +3,5 @@ extends layout.jade
 block content
   h1 Link Shortener Home Page
   form(action='/links' method='POST')
-    fieldset
-      legend Enter a Link
-      input(type='text' name='long-link')
-      button Shorten!
+    input(type='text' name='link')
+    input(type='submit')
