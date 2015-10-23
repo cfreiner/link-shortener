@@ -15,6 +15,12 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
+app.get('/links', function(req, res) {
+  db.link.findAll({order: 'click_count DESC'}).then(function(links) {
+    res.render('list', {links: links});
+  });
+});
+
 //Show the short url of the specified ID
 app.get('/links/:id', function(req, res) {
   var id = req.params.id;
@@ -31,12 +37,11 @@ app.get('/:hash', function(req, res) {
       hash: hash
     }
   }).then(function(result) {
-    res.redirect(result.url);
+    result.click_count += 1;
+    result.save().then(function() {
+      res.redirect(result.url);
+    });
   });
-});
-
-app.get('/links', function(req, res) {
-  res.render('list');
 });
 
 app.post('/links', function(req, res) {

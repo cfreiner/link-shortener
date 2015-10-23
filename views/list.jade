@@ -1,0 +1,10 @@
+extends layout.jade
+
+block content
+  h1 List of links
+  ul
+    for link in links
+      li
+        a(href='/#{link.hash}') localhost:5000/#{link.hash}
+        | &nbsp; clicked #{link.click_count} times!
+  a(href='/') Back home
